@@ -1,5 +1,5 @@
-i.icon{             /*all icons that have a class of icon*/
-    font-size:2em;      /*doube the size of container or double the size of parent*/
+i.icon{            
+    font-size:2em;  
 }
 
 .container.main{
