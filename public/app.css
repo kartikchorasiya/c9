@@ -1,0 +1,11 @@
+i.icon{             /*all icons that have a class of icon*/
+    font-size:2em;      /*doube the size of container or double the size of parent*/
+}
+
+.container.main{
+    margin-top:7.0em;
+}
+
+#delete{
+    display:inline;
+}

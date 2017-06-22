@@ -1,0 +1,20 @@
+<% include partials/header %>
+<div class="ui main text container segment">
+    <div class="ui huge header">Edit <%=blog.title%></div>
+    <form class="ui form" action="/blogs/<%=blog._id%>?_method=PUT" method="POST">          <!--html doesnot support PUT method.Therefore, we use POST method and Override package to be used by express.If we make a PUT request html automatically converts into a get request and send to /blogs/:id and so all our data will be send to the url.-->
+        <div class="field">
+            <label>Title</label>
+            <input type="text" name="blog[title]" value="<%=blog.title%>">
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <input type="text" name="blog[name]" value="<%=blog.image%>">
+        </div>
+        <div class="field">
+            <label>Blog Content</label>
+            <textarea name="blog[body]"><%=blog.body%></textarea>                 <!--textarea doesn't have value attribute so we can't use value here-->
+        </div>
+        <input class="ui violet big basic button" type="submit">
+    </form>
+</div>
+<% include partials/footer %>

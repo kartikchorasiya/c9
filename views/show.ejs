@@ -1,0 +1,20 @@
+<% include partials/header %>
+<div class="ui main text container segment">
+    <div class="ui huge header"><%= blog.title %></div>
+    <div class="ui top attached">
+        <div class="item">
+             <img class="ui centered round image" src="<%=blog.image%>">
+             <div class="content">
+                  <span><%=blog.created.toDateString()%></span>
+             </div>
+             <div class="description">
+                   <p><%-blog.body%></p>              <!--So, that we can style the body jus like we did in html-->
+             </div>
+             <a class="ui orange basic button" href="/blogs/<%= blog._id%>/edit">Edit</a>
+             <form id="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">       <!--We have given it an id so that we can style it in css and make the two buttons inline instead of up and down as they will be because form tags are not inline elements like anchor elements-->
+                 <button class="ui red basic button">DELETE</button>
+             </form>
+        </div>
+    </div>
+</div>
+<% include partials/footer %>
