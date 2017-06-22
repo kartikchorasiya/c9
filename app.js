@@ -14,10 +14,9 @@ app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use(expressSanitizer());                //It must be afterwards app.use(bodyParser)
+app.use(expressSanitizer());       
 
-app.use(methodOverride("_method"));             //However, it can be anything but mostly seen this and also we're gonna follow a particular convention
-
+app.use(methodOverride("_method"));             
 var blogSchema = new mongoose.Schema({
     title:String,
     image:String,
@@ -56,12 +55,11 @@ app.post("/blogs", function(req, res){
     
     console.log(req.body);
     
-    req.body.blog.body = req.sanitize(req.body.blog.body);  //This will sanitize the body of blog, i.e., will remove the script tag from the body of the blog if any so that no one can place any malicious code
+    req.body.blog.body = req.sanitize(req.body.blog.body);  
     
     console.log("=======");
     
     console.log(req.body);
-    //create blog and then redirect
     Blog.create(req.body.blog, function(err, newBlog){
         if(err){
             res.render("new");
@@ -86,7 +84,7 @@ app.get("/blogs/:id", function(req, res){
 
 //EDIT Route
 
-app.get("/blogs/:id/edit", function(req, res){                   //Edit is like a combination of new and show
+app.get("/blogs/:id/edit", function(req, res){                   
     Blog.findById(req.params.id, function(err, foundBlog){
         if(err){
             res.redirect("/blogs");
@@ -100,7 +98,7 @@ app.get("/blogs/:id/edit", function(req, res){                   //Edit is like 
 
 app.put("/blogs/:id", function(req, res){
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){                      //(id, newdata, callback function)
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){                 
         if(err){
             res.redirect("/blogs");
         }else{
